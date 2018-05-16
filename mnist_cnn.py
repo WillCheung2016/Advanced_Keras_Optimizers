@@ -1,6 +1,6 @@
 '''
 This script is adapted from one of the Keras examples.
-It trains a simple convnet on the MNIST dataset using COCOB optimizer.
+It trains a simple convnet on the MNIST dataset using selected advanced optimizer.
 '''
 
 from __future__ import print_function
@@ -13,6 +13,7 @@ from keras import backend as K
 from keras.layers.noise import GaussianDropout
 import numpy as np
 from COCOB import COCOB
+from SMORMS3 import SMORMS3
 
 
 batch_size = 512
@@ -52,6 +53,10 @@ print(x_test.shape[0], 'test samples')
 y_train = keras.utils.to_categorical(y_train, num_classes)
 y_test = keras.utils.to_categorical(y_test, num_classes)
 
+# select one of the advanced optimizers
+optimizer = SMORMS3(1e-3)
+#optimizer = COCOB()
+
 model = Sequential()
 model.add(Conv2D(32, kernel_size=(3, 3),
                  activation='relu',
@@ -65,7 +70,7 @@ model.add(GaussianDropout(0.5))
 model.add(Dense(num_classes, activation='softmax'))
 
 model.compile(loss=keras.losses.categorical_crossentropy,
-              optimizer=COCOB(),
+              optimizer=optimizer,
               metrics=['accuracy'])
 
 model.fit(x_train, y_train,

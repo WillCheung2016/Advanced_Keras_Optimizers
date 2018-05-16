@@ -1,6 +1,6 @@
 '''
 This script is adapted from one of the Keras examples.
-It trains a simple deep NN on the MNIST dataset using COCOB optimizer.
+It trains a simple deep NN on the MNIST dataset using selected advanced optimizer.
 '''
 
 from __future__ import print_function
@@ -10,7 +10,7 @@ from keras.datasets import mnist
 from keras.models import Sequential
 from keras.layers import Dense, Dropout
 from COCOB import COCOB
-
+from SMORMS3 import SMORMS3
 
 batch_size = 128
 num_classes = 10
@@ -32,6 +32,11 @@ print(x_test.shape[0], 'test samples')
 y_train = keras.utils.to_categorical(y_train, num_classes)
 y_test = keras.utils.to_categorical(y_test, num_classes)
 
+
+# select one of the advanced optimizers
+#optimizer = SMORMS3(1e-3)
+optimizer = COCOB()
+
 model = Sequential()
 model.add(Dense(512, activation='relu', input_shape=(784,)))
 model.add(Dropout(0.2))
@@ -42,7 +47,7 @@ model.add(Dense(10, activation='softmax'))
 model.summary()
 
 model.compile(loss='categorical_crossentropy',
-              optimizer=COCOB(),
+              optimizer=optimizer,
               metrics=['accuracy'])
 
 history = model.fit(x_train, y_train,
