@@ -1,6 +1,6 @@
 # COntinuous COin Betting Optimizer (COCOB.py)
 
-This is a Keras implementation of COCOB from the paper
+This is a Keras implementation of COCOB-Backprop from the paper
 
 **[Backprop without Learning Rates Through Coin Betting](https://arxiv.org/abs/1705.07795)**  
 Francesco Orabona and Tatiana Tommasi  
