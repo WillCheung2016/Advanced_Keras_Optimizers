@@ -1,3 +1,12 @@
+'''
+Author of the script: Shengdong Zhang
+Email: zhangshengdongofgz@gmail.com
+
+All credits go to the original authors of the optimization method.
+
+'''
+
+
 from __future__ import absolute_import
 from keras import backend as K
 from keras.optimizers import Optimizer
