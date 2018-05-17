@@ -37,6 +37,7 @@ else:
 
 x_train = x_train.astype(np.float32)
 x_test = x_test.astype(np.float32)
+
 x_train /= 255
 x_test /= 255
 
